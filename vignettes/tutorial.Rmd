@@ -1,8 +1,9 @@
 ---
 title: "Project 3: PACKAGE_NAME Tutorial"
+author: Vanessa Yang
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Project 3: PACKAGE_NAME Tutorial}
+  %\VignetteIndexEntry{PACKAGE_NAME Tutorial}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

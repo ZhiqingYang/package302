@@ -3,6 +3,7 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/vanessaaaay/package302/workflows/R-CMD-check/badge.svg)](https://github.com/vanessaaaay/package302/actions)
+[![codecov](https://codecov.io/gh/vanessaaaay/package302/branch/master/graph/badge.svg?token=CPSDUMDIRG)](https://codecov.io/gh/vanessaaaay/package302)
 <!-- badges: end -->
 
 The goal of package302 is to ...
