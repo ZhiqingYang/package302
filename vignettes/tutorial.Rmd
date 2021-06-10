@@ -29,7 +29,7 @@ These models analyze data and evaluate statistical models. It also containts a d
 
 You can install my package through Github by typing in the console:
 ```{r install, eval=FALSE}
-devtools::install_github("vanessaaaay/package302", force = TRUE)
+devtools::install_github("vanessaaaay/package302")
 ```
 
 
