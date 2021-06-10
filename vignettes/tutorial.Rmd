@@ -15,6 +15,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(package302)
-```
+## Introduction
+This package is for project 3 for STAT302. It contains four functions: 
+<p>
+* my_t.test
+* my_lm
+* my_knn_cv
+* my_rf_cv
+</p>
+These models analyze data and evaluate statistical models. It also containts a dataset my_gapminder taken from the gapminder package.
+<br>

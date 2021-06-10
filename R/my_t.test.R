@@ -20,6 +20,10 @@
 #' my_t_test(1:5, mu = 3, alt = "greater")
 #' my_t_test(1:10, mu = 5, alt = "two.sided")
 #'
+#'
+#' @importFrom stats sd
+#' @importFrom stats pt
+#'
 #' @export
 #'
 #'

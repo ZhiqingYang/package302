@@ -32,5 +32,5 @@ test_that("throws an error when input requirements aren't meet", {
 })
 
 test_that("the output is a list", {
-  expect_is(my_t.test(x, "two.sided", 0), "list")
+  expect_type(my_t.test(x, "two.sided", 0), "list")
 })
