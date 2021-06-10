@@ -57,7 +57,7 @@ $$\alpha = 0.05$$
 
 ***
 
-First example -- two.sided t-test:
+example 1 -- two.sided t-test:
 $$H_a: \mu \neq 60$$
 ```{r two.sided}
 my_t.test(my_gapminder$lifeExp, "two.sided", mu)
@@ -66,7 +66,7 @@ From the output, we can see the t statistics, degree of freedom, p-value, and th
 
 ***
 
-second example -- one.sided t-test (greater)
+example 2 -- one.sided t-test (greater)
 ```{r greater}
 my_t.test(my_gapminder$lifeExp, "greater", mu)
 ```
@@ -75,12 +75,73 @@ We don't reject the null hypothesis because the p-value is greater than the sign
 
 ***
 
-third example -- one.sided t-test (less)
+example 3 -- one.sided t-test (less)
 $$H_a: \mu < 60$$
 ```{r less}
 my_t.test(my_gapminder$lifeExp, "less", mu)
 ```
 The p-value for "less" is less than the significant level of 0.05. Thus, we reject the null hypothesis and accept the alternative hypothesis.
 
+
+### my_lm
+my_lm is a very useful function when it comes to linear regression. Here, we will perform a linear regression using **lifeExp** as our response variable and **gdpPercap** and **continent** as explanatory variables.
+<br>
+
+Note: The estimate column displays the *coefficients*. The last column displays *Pr(>|t|)*, which is the p-value in two.sided one-sample t-test.
+```{r my_lm, message=FALSE, warning=FALSE}
+my_model <- my_lm(lifeExp ~ gdpPercap + continent, data = my_gapminder)
+# display my_model
+my_model
+```
+The coefficient for gdpPercap(`r my_model$Estimate[2]`) has postive value. It represents that the lifeExp increases `r my_model$Estimate[2]` as gpdPercap increases one unit.
+
+***
+We can also have a hythothesis test on gdpPercap coefficient. 
+<br>
+
+We first need to set a $H_0$ and a $H_a$.
+$$H_0: coef = 0$$
+$$H_0: coef \neq 0$$
+Then, we will test it using the significant level of 0.05.
+$$ \alpha = 0.05$$
+We can see that the p-value, obtained from the table above,  is much smaller than the significant value, so we can reject the null hypothesis and accept the alternative one. 
+
+***
+
+Next, we want to how well our model can do in prediction. We need to pull out some models first: *x* is the explanatory variable and *y* is the response variable.
+```{r x and y}
+object <- lifeExp ~ gdpPercap + continent
+# extract the model 
+model <- model.frame(object, my_gapminder)
+# extract x 
+x <- model.matrix(object, my_gapminder)
+# extract y
+y <- model.response(model) %>% as.matrix()
+```
+
+We can visualize the actual value and the fitted value in a ggplot. 
+```{r fitted vs. acutal, fig.align="center", fig.width=7, fig.height=5}
+# fitted value
+# y_hat = x * Beta + se
+my_lifeExp <- x %*% my_model$Estimate + my_model$Std.Error
+my_df <- data.frame("actual" = my_gapminder$lifeExp, "fitted" = my_lifeExp,
+                    "color" = my_gapminder$continent) 
+my_df %>%
+  ggplot(aes(x = fitted, y = actual, color = color)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0) +
+  labs(title = "Actual vs. Fitted Values", x = "Fitted Values", y = "Actual Values",
+       color = "Continent") +
+  theme_classic(base_size = 18) +
+  theme(plot.title = element_text(hjust = 0.5),
+        panel.background = element_rect(fill = "floralwhite"),
+        legend.title = element_text(hjust = 0.5),
+        legend.position = c(0.8, .5),
+        legend.justification = c("right", "top"),
+        legend.box.just = "right",
+        legend.box.background = element_rect(colour = "cyan"))
+```
+<br>
+By coloring the continents, we can see that the fitted values have really fit linear relations with the actual values in Europe and Oceania, but not with other continents. Therefore, our linear model is not very good at predicting the entire data. In order to make the model more accurate, we may need to consider other regressions methods, for example, polynomial regression.  
 
 
