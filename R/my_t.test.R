@@ -17,19 +17,18 @@
 #' }
 #'
 #' @examples
-#' my_t_test(1:5, mu = 3, alt = "greater")
-#' my_t_test(1:10, mu = 5, alt = "two.sided")
+#' my_t_test(data = 1:5, alt = "greater", mu = 3)
 #'
 #'
 #' @importFrom stats sd
 #' @importFrom stats pt
 #'
 #' @export
-my_t.test <- function(x, alternative, mu) {
+my_t.test <- function(data, alternative, mu) {
   #check if the alternative satisfies the requirment
   if( alternative == "two.sided" | alternative == "less" | alternative == "greater") {
-    degree <- length(x) - 1
-    test_stat <- (mean(x) -mu) * sqrt(length(x)) / sd(x)
+    degree <- length(data) - 1
+    test_stat <- (mean(data) -mu) * sqrt(length(data)) / sd(data)
 
     # check each case
     if(alternative == "less") {

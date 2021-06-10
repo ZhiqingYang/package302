@@ -22,5 +22,6 @@ Depends:
 Imports: 
     tibble,
     ggplot2,
-    stats
+    stats,
+    dplyr
 VignetteBuilder: knitr

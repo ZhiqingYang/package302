@@ -4,15 +4,15 @@
 \alias{my_t.test}
 \title{t-test}
 \usage{
-my_t.test(x, alternative, mu)
+my_t.test(data, alternative, mu)
 }
 \arguments{
+\item{data}{A numeric vector of data.}
+
 \item{alternative}{A character string specifying the alternative hypothesis, must be
 one of the "two.sided (default)", "less", or "greater".}
 
 \item{mu}{A number indicating the null hypothesis value of the mean.}
-
-\item{data}{A numeric vector of data.}
 }
 \value{
 A list containing the following components:
@@ -27,8 +27,7 @@ A list containing the following components:
 Performs a one sample t-test on vectors of data.
 }
 \examples{
-my_t_test(1:5, mu = 3, alt = "greater")
-my_t_test(1:10, mu = 5, alt = "two.sided")
+my_t_test(data = 1:5, alt = "greater", mu = 3)
 
 
 }
