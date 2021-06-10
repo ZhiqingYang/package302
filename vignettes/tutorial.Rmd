@@ -39,8 +39,8 @@ library(package302)
 library(magrittr)
 library(ggplot2)
 library(dplyr)
-library(kableExtra)
 data("my_gapminder")
+data("my_penguins")
 ```
 
 
@@ -131,5 +131,44 @@ my_df %>%
 ```
 <br>
 we can see that the model fit with values in Europe and Oceania, but other continents have outliers. Therefore, it does not fit well with the data, and we may use other models.
+
+
+### my_knn_cv 
+my_knn_cv is for predicting values by using k-nearest-neighbor. It also uses cross-validation to train and evaluate models in order to improve accuracy. Here, we will make a prediction for class **species** using covariates **bill_length_mm**, **bill_depth_mm**, **body_mass_g**, and **flipper_length_mm**
+
+We first get our train and cl data. (*make sure the remove NA values)
+```{r}
+my_penguins <- na.omit(my_penguins)
+# pull out the training data
+train <- my_penguins %>% select(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g)
+# pull out the true value of class data
+cl <- my_penguins %>% select(species)
+colnames(cl) <- "class"
+```
+
+<br>
+
+Now, we are going to do the predictions ten times with k_cv = 5 and k_nn values from 1 to 10. 
+```{r eval=FALSE}
+# create a matrix to store the output
+result <- matrix(NA, nrow = 10, ncol = 2)
+# loop through the result matrix
+for (i in 1:10) {
+  # obtain the output
+  output <- my_knn_cv(train = train, cl = cl$class, k_nn = i, k_cv = 5)
+  # cv misclassfication rate
+  result[i, 1] <- output$cv_error
+  # training misclassification rate
+  result[i, 2] <- (sum(output$class != cl) / length(cl)) %>% round(4)
+}
+# convert it to data.frame
+result <- data.frame("Number of neighbors" = c(1:10), 
+                     "cv misclassification rate" = result[, 1],
+                     "training misclassification rate" = result[, 2])
+result
+```
+We want both the cv and the training misclassification rate as small as possible. 
+<br>
+
 
 
