@@ -25,3 +25,67 @@ This package is for project 3 for STAT302. It contains four functions:
 </p>
 These models analyze data and evaluate statistical models. It also containts a dataset my_gapminder taken from the gapminder package.
 <br>
+
+
+You can install my package through Github by typing in the console:
+```{r install, eval=FALSE}
+devtools::install_github("vanessaaaay/package302")
+```
+
+
+To begin, we need to load the following packages and the example dataset.
+```{r setup, echo=FALSE, eval=TRUE}
+library(package302)
+library(magrittr)
+library(ggplot2)
+library(dplyr)
+library(kableExtra)
+data("my_gapminder")
+```
+
+
+## Tutorials
+In the tutorial section, I will demonstrate how to use each function.
+
+### my_t_test
+Function *my_t.test}* can be used to perform a one-sample t-test. It's helpful when you want to test the null hypothesis. We are going to make some t-tests here by using **lifeExp**  variable from my_gapminder dataset.
+<br>
+Here, we want to test the null hypothesis in which the mean value of lifeExp is 60. So we will set *mu = 60*.
+```{r mu}
+mu <- 60
+```
+And:
+$$H_0: \mu = 60$$
+We also want to set the significant level to 0.05.
+$$\alpha = 0.05$$
+Now, we are ready to do the t-tests. 
+
+***
+
+First example -- two.tailed t-test:
+$$H_a: \mu \neq 60$$
+```{r two.sided}
+my_t_test(data = my_gapminder$lifeExp, mu, alt = "two.sided")
+```
+From the output, we can see the t-value, degree of freedom, p-value, and the alternative hypothesis. The p-value obtained is greater than the significant level of 0.05, so we don't reject the null hypothesis.
+
+***
+
+Second example -- one.tailed t-test (less)
+$$H_a: \mu < 60$$
+```{r less}
+my_t_test(data = my_gapminder$lifeExp, mu, alt = "less")
+```
+The p-value for "less" is less than the significant level of 0.05. Thus, we reject the null hypothesis and accept the alternative hypothesis.
+
+***
+
+Third example -- one.tailed t-test (greater)
+```{r greater}
+my_t_test(data = my_gapminder$lifeExp, mu, alt = "greater")
+```
+We don't reject the null hypothesis because the p-value is greater than the significant level of 0.05.
+
+
+
+
