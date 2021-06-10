@@ -1,9 +1,9 @@
 ---
-title: "Project 3: PACKAGE_NAME Tutorial"
+title: "Project 3: package302 Tutorial"
 author: Vanessa Yang
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{PACKAGE_NAME Tutorial}
+  %\VignetteIndexEntry{package302 Tutorial}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -168,7 +168,50 @@ result <- data.frame("Number of neighbors" = c(1:10),
 result
 ```
 We want both the cv and the training misclassification rate as small as possible. 
+
+
+### my_rf_cv 
+my_rf_cv is a classification method by using random forest and cross-validation. Here, we are using this function to body_mass_g using covariates bill_length_mm, bill_depth_mm, and flipper_length_mm
 <br>
 
+We will do the demonstration by setting our k equal to 2, 5, and 10. For each k, we will run the functions 30 times.
+
+```{r mse}
+# create a matrix to store the output for each k 
+cv_error <- matrix(NA, nrow = 90, ncol = 2)
+cv_error[, 1] <- rep(c(2, 5, 10), each = 30)
+# rows begin at 1
+row <- 1
+#Iterate through k in c(2, 5, 10):
+for(k in c(2, 5, 10)) {
+  #For each value of k, run function 30 times.
+  for(i in 1:30) {
+    # record mse
+    cv_error[row, 2] <- my_rf_cv(k)
+    # go to the next row 
+    row <- row + 1
+  }
+}
+```
+
+To better visualize the estimated MSE, we will display it in boxplots.
+```{r}
+my_df <- data.frame("k" = cv_error[, 1], "mse" = cv_error[, 2])
+my_df %>% 
+  ggplot(aes(x = factor(k), y = mse, fill = factor(k))) +
+  geom_boxplot() +
+  labs(title = "MSE for K folds", x = "Number of Folds", y = "MSE", 
+       fill = "Number of Folds")
+```
+Use a table to display the average CV estimate and the standard deviation of the CV estimates across 
+```{r}
+mse_sum <- my_df %>% 
+  # group the data by the value of k
+  group_by(k) %>%
+  # calculate mean and sd of MSE for each k 
+  summarise(mean = mean(mse), sd = sd(mse))
+mse_sum
+```
+We can see that the mean of MSE decreases as k increases, and sd decreases when k increases.  It occurs because as the number of folds increase, we are able to train the model more times to avoid overfitting.
 
 
