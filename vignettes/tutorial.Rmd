@@ -54,34 +54,33 @@ And:
 $$H_0: \mu = 60$$
 We also want to set the significant level to 0.05.
 $$\alpha = 0.05$$
-Now, we are ready to do the t-tests. 
 
 ***
 
-First example -- two.tailed t-test:
+First example -- two.sided t-test:
 $$H_a: \mu \neq 60$$
 ```{r two.sided}
-my_t_test(data = my_gapminder$lifeExp, mu, alt = "two.sided")
+my_t.test(my_gapminder$lifeExp, "two.sided", mu)
 ```
-From the output, we can see the t-value, degree of freedom, p-value, and the alternative hypothesis. The p-value obtained is greater than the significant level of 0.05, so we don't reject the null hypothesis.
+From the output, we can see the t statistics, degree of freedom, p-value, and the alternative hypothesis. The p-value is greater than the significant level of 0.05, so we don't reject the null hypothesis.
 
 ***
 
-Second example -- one.tailed t-test (less)
-$$H_a: \mu < 60$$
-```{r less}
-my_t_test(data = my_gapminder$lifeExp, mu, alt = "less")
-```
-The p-value for "less" is less than the significant level of 0.05. Thus, we reject the null hypothesis and accept the alternative hypothesis.
-
-***
-
-Third example -- one.tailed t-test (greater)
+second example -- one.sided t-test (greater)
 ```{r greater}
-my_t_test(data = my_gapminder$lifeExp, mu, alt = "greater")
+my_t.test(my_gapminder$lifeExp, "greater", mu)
 ```
 We don't reject the null hypothesis because the p-value is greater than the significant level of 0.05.
 
+
+***
+
+third example -- one.sided t-test (less)
+$$H_a: \mu < 60$$
+```{r less}
+my_t.test(my_gapminder$lifeExp, "less", mu)
+```
+The p-value for "less" is less than the significant level of 0.05. Thus, we reject the null hypothesis and accept the alternative hypothesis.
 
 
 
