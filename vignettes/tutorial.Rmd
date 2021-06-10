@@ -36,10 +36,6 @@ devtools::install_github("vanessaaaay/package302")
 To begin, we need to load the following packages and the example dataset.
 ```{r setup, echo=FALSE, eval=TRUE}
 library(package302)
-library(magrittr)
-library(ggplot2)
-library(dplyr)
-library(kableExtra)
 data("my_gapminder")
 ```
 
@@ -50,7 +46,7 @@ In the tutorial section, I will demonstrate how to use each function.
 ### my_t_test
 Function *my_t.test}* can be used to perform a one-sample t-test. It's helpful when you want to test the null hypothesis. We are going to make some t-tests here by using **lifeExp**  variable from my_gapminder dataset.
 <br>
-Here, we want to test the null hypothesis in which the mean value of lifeExp is 60. So we will set *mu = 60*.
+Suppose I want to test the null hypothesis in which the mean value of lifeExp is 60. So we will set *mu = 60*.
 ```{r mu}
 mu <- 60
 ```
