@@ -23,5 +23,7 @@ Imports:
     tibble,
     ggplot2,
     stats,
-    dplyr
+    dplyr,
+    class,
+    magrittr
 VignetteBuilder: knitr

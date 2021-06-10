@@ -59,27 +59,22 @@ $$H_0: \mu = 60$$
 We also want to set the significant level to 0.05.
 $$\alpha = 0.05$$
 
-***
-
-example 1 -- two.sided t-test:
+**example 1 -- two.sided t-test:**
 $$H_a: \mu \neq 60$$
 ```{r two.sided}
 my_t.test(my_gapminder$lifeExp, "two.sided", mu)
 ```
 From the output, we can see the t statistics, degree of freedom, p-value, and the alternative hypothesis. The p-value is greater than the significant level of 0.05, so we don't reject the null hypothesis.
 
-***
 
-example 2 -- one.sided t-test (greater)
+**example 2 -- one.sided t-test (greater)**
 ```{r greater}
 my_t.test(my_gapminder$lifeExp, "greater", mu)
 ```
 We don't reject the null hypothesis because the p-value is greater than the significant level of 0.05.
 
 
-***
-
-example 3 -- one.sided t-test (less)
+**example 3 -- one.sided t-test (less)**
 $$H_a: \mu < 60$$
 ```{r less}
 my_t.test(my_gapminder$lifeExp, "less", mu)
@@ -98,7 +93,7 @@ my_model
 ```
 The coefficient for gdpPercap(`r my_model$Estimate[2]`) is positive, meaning that the lifeExp increases `r my_model$Estimate[2]` as gpdPercap increases one unit.
 
-***
+
 We can also have a hythothesis test on gdpPercap coefficient. 
 <br>
 
@@ -109,7 +104,6 @@ Then, we will test it using the significant level of 0.05.
 $$ \alpha = 0.05$$
 We can see that the p-value is smaller than the significant value, so we can reject the null hypothesis.
 
-***
 
 Next, we want to test the fit of the model.
 ```{r x and y}
@@ -136,6 +130,6 @@ my_df %>%
   theme(legend.justification = c("right", "top"))
 ```
 <br>
-By coloring the continents, we can see that the fitted values have really fit linear relations with the actual values in Europe and Oceania, but not with other continents. Therefore, our linear model is not very good at predicting the entire data. In order to make the model more accurate, we may need to consider other regressions methods, for example, polynomial regression.  
+we can see that the model fit with values in Europe and Oceania, but other continents have outliers. Therefore, it does not fit well with the data, and we may use other models.
 
 
