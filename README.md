@@ -6,22 +6,28 @@
 [![codecov](https://codecov.io/gh/vanessaaaay/package302/branch/master/graph/badge.svg?token=CPSDUMDIRG)](https://codecov.io/gh/vanessaaaay/package302)
 <!-- badges: end -->
 
-The goal of package302 is to ...
 
 ## Installation
 
 You can install the released version of package302 from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("package302")
+# install.packages("devtools")
+devtools::install_github("vanessaaaay/package302")
+library(package302)
 ```
 
-## Example
+## Use
 
-This is a basic example which shows you how to solve a common problem:
+The vignette demonstrates example usage of all main functions. You can see the vignette by using the following code:
 
 ``` r
+# install.packages("devtools")
+devtools::install_github("vanessaaaay/package302", build_vignette = TRUE, build_opts = c())
 library(package302)
-## basic example code
+# Use this to view the vignette in the package302 HTML help
+help(package = "package302", help_type = "html")
+# Use this to view the vignette as an isolated HTML file
+utils::browseVignettes(package = "package302")
 ```
 

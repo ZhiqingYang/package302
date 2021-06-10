@@ -23,7 +23,7 @@ This package is for project 3 for STAT302. It contains four functions:
 * my_knn_cv
 * my_rf_cv
 </p>
-These models analyze data and evaluate statistical models. It also containts a dataset my_gapminder taken from the gapminder package.
+These models analyze data and evaluate statistical models. It also containts a dataset my_gapminder taken from the gapminder package, and my_penguins from the penguins package
 <br>
 
 
@@ -48,13 +48,13 @@ data("my_penguins")
 In the tutorial section, I will demonstrate how to use each function.
 
 ### my_t_test
-Function *my_t.test}* can be used to perform a one-sample t-test. It's helpful when you want to test the null hypothesis. We are going to make some t-tests here by using **lifeExp**  variable from my_gapminder dataset.
+Function *my_t.test* can be used to perform a one-sample t-test. It's helpful when you want to test the null hypothesis. We are going to make some t-tests here by using **lifeExp**  variable from my_gapminder dataset.
 <br>
 Suppose I want to test the null hypothesis in which the mean value of lifeExp is 60. So we will set *mu = 60*.
 ```{r mu}
 mu <- 60
 ```
-And:
+
 $$H_0: \mu = 60$$
 We also want to set the significant level to 0.05.
 $$\alpha = 0.05$$
@@ -88,7 +88,6 @@ my_lm runs a linear regression model. we will perform a linear regression using 
 
 ```{r my_lm, message=FALSE, warning=FALSE}
 my_model <- my_lm(lifeExp ~ gdpPercap + continent, data = my_gapminder)
-# display my_model
 my_model
 ```
 The coefficient for gdpPercap(`r my_model$Estimate[2]`) is positive, meaning that the lifeExp increases `r my_model$Estimate[2]` as gpdPercap increases one unit.
@@ -97,7 +96,7 @@ The coefficient for gdpPercap(`r my_model$Estimate[2]`) is positive, meaning tha
 We can also have a hythothesis test on gdpPercap coefficient. 
 <br>
 
-We first need to set a $H_0$ and a $H_a$.
+We first set a $H_0$ and a $H_a$.
 $$H_0: coef = 0$$
 $$H_0: coef \neq 0$$
 Then, we will test it using the significant level of 0.05.
@@ -203,6 +202,7 @@ my_df %>%
   labs(title = "MSE for K folds", x = "Number of Folds", y = "MSE", 
        fill = "Number of Folds")
 ```
+
 Use a table to display the average CV estimate and the standard deviation of the CV estimates across 
 ```{r}
 mse_sum <- my_df %>% 
