@@ -29,12 +29,12 @@ These models analyze data and evaluate statistical models. It also containts a d
 
 You can install my package through Github by typing in the console:
 ```{r install, eval=FALSE}
-devtools::install_github("vanessaaaay/package302")
+devtools::install_github("vanessaaaay/package302", force = TRUE)
 ```
 
 
 To begin, we need to load the following packages and the example dataset.
-```{r setup, echo=FALSE, eval=TRUE}
+```{r setup}
 library(package302)
 data("my_gapminder")
 ```

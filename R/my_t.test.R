@@ -25,9 +25,6 @@
 #' @importFrom stats pt
 #'
 #' @export
-#'
-#'
-#'
 my_t.test <- function(x, alternative, mu) {
   #check if the alternative satisfies the requirment
   if( alternative == "two.sided" | alternative == "less" | alternative == "greater") {
