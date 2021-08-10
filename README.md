@@ -1,5 +1,8 @@
 
-# package302
+# R package302
+
+This is a self-developed R package that can perform t test, linear model, KNN, and Random Forest. 
+
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/vanessaaaay/package302/workflows/R-CMD-check/badge.svg)](https://github.com/vanessaaaay/package302/actions)
